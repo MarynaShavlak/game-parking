@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ body, html {
+  height: 100%;
+ }
+
+ .wrapper {
+  display: flex;
+  height: 100%;
+ }
+
+.block-form {
+  background-color: lightskyblue;
+  width: 30%;
+  height: 100%;
+
+}
+
+.block-parking {
+background-color:lightgray;
+width: 70%;
+height: 100%;
+}
+
+
+.form-title {
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid white;
+ 
+}
+.parking-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.form-control {
+  width: 70%;
+  height: 30px;
+}
+
+
+.add-new-car-btn {
+   height: auto;
+   background-color: white;
+   border-radius: 20px;
+   border: none;
+   padding: 20px;
+   font-size: 20px;
+   font-weight: 700;
+   color: black;
+   cursor: pointer;
+   transition : 300ms color cubic-bezier(0.075, 0.82, 0.165, 1), 300ms background-color cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.add-new-car-btn:hover, .add-new-car-btn:focus {
+   background-color: black;
+   color: white;
+}
