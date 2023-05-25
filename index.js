@@ -345,7 +345,6 @@ function updateParkingPlacesQuantityOnLevel(value) {
   );
   const freeParkingPlaces = parkingPlacesQuantity[activeLevelIndex] + value;
   parkingPlacesQuantity[activeLevelIndex] = freeParkingPlaces;
-  console.log('parkingPlacesQuantity: ', parkingPlacesQuantity);
 }
 function isPlaceOccupied(levelIndex, carPlace) {
   const activeCarsBlock = carsBlockLevels[levelIndex];
@@ -355,7 +354,6 @@ function isPlaceOccupied(levelIndex, carPlace) {
   return hasCar;
 }
 function disableOccupiedPlaces(occupiedPlaces) {
-  console.log('occupiedPlaces: ', occupiedPlaces);
   const placeOptions = document.querySelectorAll('select[name=place] option');
   placeOptions.forEach(option => {
     const placeValue = option.value;
