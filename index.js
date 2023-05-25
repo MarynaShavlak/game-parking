@@ -189,8 +189,23 @@ const carPositionVariantsThirdLevel = [
   },
 ];
 
+const parkingPlacesQuantity = [10, 10, 10];
+
+const activeLevelIndex = buttons.findIndex(button =>
+  button.classList.contains('active'),
+);
+
 btnAdd.onclick = function (e) {
   e.preventDefault();
+  const activeLevelIndex = buttons.findIndex(button =>
+    button.classList.contains('active'),
+  );
+  const levelIndex = activeLevelIndex;
+  if (parkingPlacesQuantity[levelIndex] === 0) {
+    alert('There are no free places on this parking level');
+    return;
+  }
+
   const carNumbers = numbers.value;
   const carColor = color.value;
   const carType = type.value;
@@ -204,6 +219,7 @@ btnAdd.onclick = function (e) {
     carPosition,
   });
   numbers.value = '';
+  updateParkingPlacesQuantityOnLevel(-1);
 };
 
 buttons.forEach(button => {
@@ -226,17 +242,28 @@ function onLevelBtnClick(e) {
       setCarsBlockDisplay(id);
     } else {
       button.classList.remove('active');
+      const activeLevelIndex = buttons.findIndex(button =>
+        button.classList.contains('active'),
+      );
+      const levelIndex = activeLevelIndex;
+      if (parkingPlacesQuantity[levelIndex] === 0) {
+        alert('There are no free places on this parking level');
+        return;
+      }
     }
   });
 }
+
 function onCarsBlockLevelClick(e) {
+  console.log('e: ', e);
   const element = e.target;
-  const parent = element.parentElement;
-  const isCar = parent.classList.contains('car');
-  if (isCar) {
-    const approve = confirm('Do you realyy want to delete car from parking?');
+  const parentCar = element.closest('.car');
+  console.log('parentCar: ', parentCar);
+  if (parentCar) {
+    const approve = confirm('Do you really want to delete car from parking?');
     if (approve) {
-      parent.remove();
+      parentCar.remove();
+      updateParkingPlacesQuantityOnLevel(1);
     }
   }
 }
@@ -286,4 +313,14 @@ function getCarPosition(carPlace) {
   } else if (activeLevelIndex === 2) {
     return carPositionVariantsThirdLevel[carPlace];
   }
+}
+
+function updateParkingPlacesQuantityOnLevel(value) {
+  const activeLevelIndex = buttons.findIndex(button =>
+    button.classList.contains('active'),
+  );
+
+  const freeParkingPlaces = parkingPlacesQuantity[activeLevelIndex] + value;
+  parkingPlacesQuantity[activeLevelIndex] = freeParkingPlaces;
+  console.log('parkingPlacesQuantity: ', parkingPlacesQuantity);
 }
