@@ -135,21 +135,77 @@ const carPositionVariantsSecondLevel = [
     direction: 'vertically-reverse',
   },
 ];
+const carPositionVariantsThirdLevel = [
+  {
+    top: '45px',
+    left: '450px',
+    direction: 'horizontally-reverse',
+  },
+  {
+    top: '130px',
+    left: '450px',
+    direction: 'horizontally-reversey',
+  },
+  {
+    top: '215px',
+    left: '450px',
+    direction: 'horizontally-reverse',
+  },
+  {
+    top: '300px',
+    left: '450px',
+    direction: 'horizontally-reverse',
+  },
+  {
+    top: '385px',
+    left: '450px',
+    direction: 'horizontally-reverse',
+  },
+
+  {
+    top: '7px',
+    left: '80px',
+    direction: 'corner',
+  },
+  {
+    top: '98px',
+    left: '80px',
+    direction: 'corner',
+  },
+  {
+    top: '189px',
+    left: '80px',
+    direction: 'corner',
+  },
+  {
+    top: '280px',
+    left: '80px',
+    direction: 'corner',
+  },
+  {
+    top: '371px',
+    left: '80px',
+    direction: 'corner',
+  },
+];
 
 btnAdd.onclick = function (e) {
   e.preventDefault();
-  let carNumbers = numbers.value;
-  let carColor = color.value;
-  let carType = type.value;
-  let carPlace = place.value;
+  const carNumbers = numbers.value;
+  const carColor = color.value;
+  const carType = type.value;
+  const carPlace = place.value;
+  const carPosition = getCarPosition(carPlace);
 
   createCar({
     carNumbers,
     carColor,
     carType,
-    carPosition: carPositionVariantsSecondLevel[carPlace],
+    carPosition,
   });
+  numbers.value = '';
 };
+
 buttons.forEach(button => {
   button.onclick = onLevelBtnClick;
 });
@@ -187,14 +243,19 @@ function onCarsBlockLevelClick(e) {
 
 function createCar({ carNumbers, carColor, carType, carPosition }) {
   const { top, left, direction } = carPosition;
-  let carSkeleton = `<div class="car color-${carColor} type-${carType} ${direction} " style="top: ${top}; left: ${left}">
+  const activeLevelIndex = buttons.findIndex(button =>
+    button.classList.contains('active'),
+  );
+  if (activeLevelIndex !== -1) {
+    const activeCarsBlock = carsBlockLevels[activeLevelIndex];
+    let carSkeleton = `<div class="car color-${carColor} type-${carType} ${direction} " style="top: ${top}; left: ${left}">
             <div class="header">
             </div>
             <div class="middle"><div class ="car-number">${carNumbers}</div></div>
             <div class="footer"></div>
           </div>`;
-  // carsBlock.innerHTML += carSkeleton;
-  carsBlockLevels[1].innerHTML += carSkeleton;
+    activeCarsBlock.innerHTML += carSkeleton;
+  }
 }
 
 function setCarsBlockDisplay(id) {
@@ -210,5 +271,19 @@ function setCarsBlockDisplay(id) {
     carsBlockLevels[0].style.display = 'none';
     carsBlockLevels[1].style.display = 'none';
     carsBlockLevels[2].style.display = 'block';
+  }
+}
+
+function getCarPosition(carPlace) {
+  const activeLevelIndex = buttons.findIndex(button =>
+    button.classList.contains('active'),
+  );
+
+  if (activeLevelIndex === 0) {
+    return carPositionVariantsFirstLevel[carPlace];
+  } else if (activeLevelIndex === 1) {
+    return carPositionVariantsSecondLevel[carPlace];
+  } else if (activeLevelIndex === 2) {
+    return carPositionVariantsThirdLevel[carPlace];
   }
 }

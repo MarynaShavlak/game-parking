@@ -154,8 +154,14 @@ ul {
   position: absolute;
   width: 15px;
   height: 3px;
+}
+.header::before, .header::after  {
   background-color: yellow;
 }
+.footer::before, .footer::after  {
+  background-color: white;
+}
+
 .header::before {
   top: 0;
   left: 0;
@@ -244,9 +250,6 @@ ul {
   height: 100px;
 }
 
-/* .car.type-2 {
-transform: rotate(90deg);
-} */
 
 .car.type-2 .middle {
   height: 50px;
@@ -258,11 +261,17 @@ transform: rotate(90deg);
   width: calc(70px - 4px);
 }
 
-/* .car.type-3 {} */
 
 .car.horizontally {
   transform: rotate(90deg);
 }
+.car.horizontally-reverse {
+  transform: rotate(-90deg);
+}
 .car.vertically-reverse {
   transform: rotate(180deg);
+}
+
+.car.corner {
+  transform: rotate(111deg);
 }
