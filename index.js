@@ -116,7 +116,7 @@ function createCar({ carNumbers, carColor, carType, carPosition }) {
   let carSkeleton = `<div class="car color-${carColor} type-${carType} ${direction} " style="top: ${top}; left: ${left}">
             <div class="header">
             </div>
-            <div class="middle"></div>
+            <div class="middle"><div class ="car-number">${carNumbers}</div></div>
             <div class="footer"></div>
           </div>`;
   carsBlock.innerHTML += carSkeleton;
