@@ -280,3 +280,8 @@ ul {
 .car.corner {
   transform: rotate(111deg);
 }
+
+option:disabled {
+  /* display:none; */
+  color: red;
+}
