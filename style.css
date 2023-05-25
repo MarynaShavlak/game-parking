@@ -24,13 +24,24 @@ ul {
 .block-parking {
   position: relative;
   background-color:lightgray;
-  width: 70%;
   height: 100%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+
+
+#cars {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-color: rgba(200, 150, 140, 0.5);
+}
 
 .form-title {
   text-align: center;
@@ -93,10 +104,13 @@ ul {
 
 .parking-area-img {
   display: block;
-  width: 90%;
-  height: 90%;
+  width: 600px;
+    height: 600px;
   border: 2px solid grey;
   border-radius: 10px;
+  /* position: absolute;
+  top: 5%;
+  left: 5%; */
 }
 
 
@@ -110,14 +124,6 @@ ul {
   padding-left: 10px;
 }
 
-#cars {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 90%;
-  background-color: rgba(200, 150, 140,0.5);
-}
 
 
 .car {
@@ -196,8 +202,8 @@ ul {
   background-color: grey;
 }
 
-.car.color-yellow {
-  background-color: yellow;
+.car.color-blueviolet {
+  background-color:blueviolet;
 }
 .car.color-blue {
   background-color: blue;
@@ -222,9 +228,9 @@ ul {
   height: 100px;
 }
 
-.car.type-2 {
+/* .car.type-2 {
 transform: rotate(90deg);
-}
+} */
 
 .car.type-2 .middle {
   height: 50px;
