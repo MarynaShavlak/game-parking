@@ -19,7 +19,18 @@ const color = document.querySelector('select[name=color]');
 const type = document.querySelector('select[name=type]');
 const place = document.querySelector('select[name=place]');
 const btnAdd = document.querySelector('.add-new-car-btn');
-const carsBlock = document.querySelector('#cars');
+const carsBlock = document.querySelector('.cars');
+const parkingImg = document.querySelector('.parking-area-img');
+const buttons = [
+  document.querySelector('#level-1'),
+  document.querySelector('#level-2'),
+  document.querySelector('#level-3'),
+];
+const carsBlockLevels = [
+  document.querySelector('#cars-1'),
+  document.querySelector('#cars-2'),
+  document.querySelector('#cars-3'),
+];
 
 btnAdd.onclick = function (e) {
   e.preventDefault();
@@ -99,7 +110,30 @@ btnAdd.onclick = function (e) {
     carPosition: carPositionVariants[carPlace],
   });
 };
-carsBlock.onclick = function (e) {
+buttons.forEach(button => {
+  button.onclick = onLevelBtnClick;
+});
+carsBlockLevels.forEach(carsBlock => {
+  if (carsBlock) {
+    carsBlock.onclick = onCarsBlockLevelClick;
+  }
+});
+
+function onLevelBtnClick(e) {
+  const clickedButton = e.target;
+  if (clickedButton.classList.contains('active')) return;
+  buttons.forEach(button => {
+    if (button === clickedButton) {
+      const id = button.id;
+      button.classList.add('active');
+      parkingImg.src = `./images/${id}.jpg`;
+      setCarsBlockDisplay(id);
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+function onCarsBlockLevelClick(e) {
   const element = e.target;
   const parent = element.parentElement;
   const isCar = parent.classList.contains('car');
@@ -109,7 +143,7 @@ carsBlock.onclick = function (e) {
       parent.remove();
     }
   }
-};
+}
 
 function createCar({ carNumbers, carColor, carType, carPosition }) {
   const { top, left, direction } = carPosition;
@@ -120,4 +154,20 @@ function createCar({ carNumbers, carColor, carType, carPosition }) {
             <div class="footer"></div>
           </div>`;
   carsBlock.innerHTML += carSkeleton;
+}
+
+function setCarsBlockDisplay(id) {
+  if (id === 'level-1') {
+    carsBlockLevels[0].style.display = 'block';
+    carsBlockLevels[1].style.display = 'none';
+    carsBlockLevels[2].style.display = 'none';
+  } else if (id === 'level-2') {
+    carsBlockLevels[0].style.display = 'none';
+    carsBlockLevels[1].style.display = 'block';
+    carsBlockLevels[2].style.display = 'none';
+  } else if (id === 'level-3') {
+    carsBlockLevels[0].style.display = 'none';
+    carsBlockLevels[1].style.display = 'none';
+    carsBlockLevels[2].style.display = 'block';
+  }
 }
