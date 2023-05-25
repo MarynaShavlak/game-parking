@@ -27,13 +27,93 @@ btnAdd.onclick = function (e) {
   let carColor = color.value;
   let carType = type.value;
   let carPlace = place.value;
+  let carPosition = {
+    top: '20px',
+    left: '80px',
+    direction: 'horizontally',
+  };
+  let carPositionVariants = [
+    {
+      top: '-16px',
+      left: '120px',
+      direction: 'horizontally',
+    },
+    {
+      top: '80px',
+      left: '120px',
+      direction: 'horizontally',
+    },
+    {
+      top: '190px',
+      left: '120px',
+      direction: 'horizontally',
+    },
+    {
+      top: '295px',
+      left: '120px',
+      direction: 'horizontally',
+    },
+    {
+      top: '395px',
+      left: '120px',
+      direction: 'horizontally',
+    },
+    {
+      top: '-16px',
+      left: '350px',
+      direction: 'horizontally',
+    },
+    {
+      top: '80px',
+      left: '350px',
+      direction: 'horizontally',
+    },
+    {
+      top: '190px',
+      left: '350px',
+      direction: 'horizontally',
+    },
+    {
+      top: '295px',
+      left: '350px',
+      direction: 'horizontally',
+    },
+    {
+      top: '395px',
+      left: '350px',
+      direction: 'horizontally',
+    },
+  ];
   let info =
-    carNumbers + ', color ' + carColor + ', type ' + carType + ' , ' + carPlace;
-  createCar({ carNumbers, carColor, carType, carPlace });
+    carNumbers +
+    ', color ' +
+    carColor +
+    ', type ' +
+    carType +
+    ' , ' +
+    carPosition;
+  createCar({
+    carNumbers,
+    carColor,
+    carType,
+    carPosition: carPositionVariants[carPlace],
+  });
+};
+carsBlock.onclick = function (e) {
+  const element = e.target;
+  const parent = element.parentElement;
+  const isCar = parent.classList.contains('car');
+  if (isCar) {
+    const approve = confirm('Do you realyy want to delete car from parking?');
+    if (approve) {
+      parent.remove();
+    }
+  }
 };
 
-function createCar({ carNumbers, carColor, carType, carPlace }) {
-  let carSkeleton = `<div class="car color-${carColor} type-${carType}" style="top: 20px; left: 80px">
+function createCar({ carNumbers, carColor, carType, carPosition }) {
+  const { top, left, direction } = carPosition;
+  let carSkeleton = `<div class="car color-${carColor} type-${carType} ${direction} " style="top: ${top}; left: ${left}">
             <div class="header">
             </div>
             <div class="middle"></div>

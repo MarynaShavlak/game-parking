@@ -244,6 +244,9 @@ transform: rotate(90deg);
 
 /* .car.type-3 {} */
 
-.car.car-rotate {
+.car.horizontally {
   transform: rotate(90deg);
 }
+/* .car.horizontally {
+  transform: rotate(90deg);
+} */
