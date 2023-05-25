@@ -31,6 +31,110 @@ const carsBlockLevels = [
   document.querySelector('#cars-2'),
   document.querySelector('#cars-3'),
 ];
+const carPositionVariantsFirstLevel = [
+  {
+    top: '-16px',
+    left: '120px',
+    direction: 'horizontally',
+  },
+  {
+    top: '80px',
+    left: '120px',
+    direction: 'horizontally',
+  },
+  {
+    top: '190px',
+    left: '120px',
+    direction: 'horizontally',
+  },
+  {
+    top: '295px',
+    left: '120px',
+    direction: 'horizontally',
+  },
+  {
+    top: '395px',
+    left: '120px',
+    direction: 'horizontally',
+  },
+  {
+    top: '-16px',
+    left: '350px',
+    direction: 'horizontally',
+  },
+  {
+    top: '80px',
+    left: '350px',
+    direction: 'horizontally',
+  },
+  {
+    top: '190px',
+    left: '350px',
+    direction: 'horizontally',
+  },
+  {
+    top: '295px',
+    left: '350px',
+    direction: 'horizontally',
+  },
+  {
+    top: '395px',
+    left: '350px',
+    direction: 'horizontally',
+  },
+];
+const carPositionVariantsSecondLevel = [
+  {
+    top: '70px',
+    left: '70px',
+    direction: 'vertically',
+  },
+  {
+    top: '70px',
+    left: '180px',
+    direction: 'vertically',
+  },
+  {
+    top: '70px',
+    left: '290px',
+    direction: 'vertically',
+  },
+  {
+    top: '70px',
+    left: '400px',
+    direction: 'vertically',
+  },
+  {
+    top: '70px',
+    left: '500px',
+    direction: 'vertically',
+  },
+  {
+    top: '350px',
+    left: '70px',
+    direction: 'vertically-reverse',
+  },
+  {
+    top: '350px',
+    left: '180px',
+    direction: 'vertically-reverse',
+  },
+  {
+    top: '350px',
+    left: '290px',
+    direction: 'vertically-reverse',
+  },
+  {
+    top: '350px',
+    left: '400px',
+    direction: 'vertically-reverse',
+  },
+  {
+    top: '350px',
+    left: '500px',
+    direction: 'vertically-reverse',
+  },
+];
 
 btnAdd.onclick = function (e) {
   e.preventDefault();
@@ -38,76 +142,12 @@ btnAdd.onclick = function (e) {
   let carColor = color.value;
   let carType = type.value;
   let carPlace = place.value;
-  let carPosition = {
-    top: '20px',
-    left: '80px',
-    direction: 'horizontally',
-  };
-  let carPositionVariants = [
-    {
-      top: '-16px',
-      left: '120px',
-      direction: 'horizontally',
-    },
-    {
-      top: '80px',
-      left: '120px',
-      direction: 'horizontally',
-    },
-    {
-      top: '190px',
-      left: '120px',
-      direction: 'horizontally',
-    },
-    {
-      top: '295px',
-      left: '120px',
-      direction: 'horizontally',
-    },
-    {
-      top: '395px',
-      left: '120px',
-      direction: 'horizontally',
-    },
-    {
-      top: '-16px',
-      left: '350px',
-      direction: 'horizontally',
-    },
-    {
-      top: '80px',
-      left: '350px',
-      direction: 'horizontally',
-    },
-    {
-      top: '190px',
-      left: '350px',
-      direction: 'horizontally',
-    },
-    {
-      top: '295px',
-      left: '350px',
-      direction: 'horizontally',
-    },
-    {
-      top: '395px',
-      left: '350px',
-      direction: 'horizontally',
-    },
-  ];
-  let info =
-    carNumbers +
-    ', color ' +
-    carColor +
-    ', type ' +
-    carType +
-    ' , ' +
-    carPosition;
+
   createCar({
     carNumbers,
     carColor,
     carType,
-    carPosition: carPositionVariants[carPlace],
+    carPosition: carPositionVariantsSecondLevel[carPlace],
   });
 };
 buttons.forEach(button => {
@@ -153,7 +193,8 @@ function createCar({ carNumbers, carColor, carType, carPosition }) {
             <div class="middle"><div class ="car-number">${carNumbers}</div></div>
             <div class="footer"></div>
           </div>`;
-  carsBlock.innerHTML += carSkeleton;
+  // carsBlock.innerHTML += carSkeleton;
+  carsBlockLevels[1].innerHTML += carSkeleton;
 }
 
 function setCarsBlockDisplay(id) {

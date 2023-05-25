@@ -263,6 +263,6 @@ transform: rotate(90deg);
 .car.horizontally {
   transform: rotate(90deg);
 }
-/* .car.horizontally {
-  transform: rotate(90deg);
-} */
+.car.vertically-reverse {
+  transform: rotate(180deg);
+}
